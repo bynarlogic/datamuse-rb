@@ -2,6 +2,8 @@ require "datamuse/rb/version"
 require 'httparty'
 require 'ostruct'
 
+module DatamuseRB
+
 class DatamuseRequest
   include HTTParty
   base_uri "api.datamuse.com"
@@ -12,16 +14,16 @@ class DatamuseRequest
   end
 end
 
+WORD_METHODS = {means_like: :ml, sounds_like: :sl, spelled_like: :sp, related_popular_nouns: :rel_jja, related_popular_adjectives: :rel_jjb, related_synonyms: :rel_syn, related_triggers: :rel_trg, related_antonyms: :rel_ant}
+
+end
+
 class String
-  def means_like
-    DatamuseRequest.send("/words",{ml: self})
+  include DatamuseRB
+
+  def method_missing(name)
+    super unless WORD_METHODS[name]
+    DatamuseRequest.send("/words",{WORD_METHODS[name] => self})
   end
 
-  def sounds_like
-    DatamuseRequest.send("/words",{sl: self})
-  end
-
-  def spelled_like
-    DatamuseRequest.send("/words",{sp: self})
-  end
 end

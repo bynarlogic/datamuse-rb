@@ -39,4 +39,44 @@ RSpec.describe Datamuse::Rb do
   describe "related_antonyms" do
     include_examples "word method examples", "late", "related_antonyms", [:word,:score]
   end
+
+  describe "kind_of_hyponyms" do
+    include_examples "word method examples", "gondola", "kind_of_hyponyms", [:word,:score]
+  end
+
+  describe "general_hyponyms" do
+    include_examples "word method examples", "boat", "general_hyponyms", [:word,:score]
+  end
+
+  describe "comporomise_hyponyms" do
+    include_examples "word method examples", "car", "comporomise_hyponyms", [:word,:score]
+  end
+
+  describe "part_of_meronyms" do
+    include_examples "word method examples", "car", "part_of_meronyms", [:word,:score]
+  end
+
+  describe "frequent_followers" do
+    include_examples "word method examples", "wreak", "frequent_followers", [:word,:score]
+  end
+
+  describe "frequent_predecessors" do
+    include_examples "word method examples", "havoc", "frequent_predecessors", [:word,:score]
+  end
+
+  describe "related_rhymes" do
+    include_examples "word method examples", "aid", "related_rhymes", [:word,:score, :numSyllables]
+  end
+
+  describe "approximate_rhymes" do
+    include_examples "word method examples", "forest", "approximate_rhymes", [:word,:score, :numSyllables]
+  end
+
+  describe "related_homophones" do
+    include_examples "word method examples", "course", "related_homophones", [:word,:score, :numSyllables]
+  end
+
+  describe "consonant_match" do
+    include_examples "word method examples", "sample", "consonant_match", [:word,:score, :numSyllables]
+  end
 end

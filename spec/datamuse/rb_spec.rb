@@ -5,167 +5,38 @@ RSpec.describe Datamuse::Rb do
   end
 
   describe "means_like" do
-    it "returns a collection of words as openstructs" do
-      result = "ruby".means_like
-      expect(result).to be_a(Array)
-      expect(result.first).to be_a(OpenStruct)
-    end
+    include_examples "word method examples", "ruby", "means_like", [:word,:score, :tags]
 
     it "returns empty if the word is not in datamuse" do
       expect("jkl;asdf".means_like).to be_empty
     end
-
-    it "returns empty if the string is blank" do
-      expect("".means_like).to be_empty
-    end
-
-    it "each entry has 3 keys - word, score, and tags" do
-      result = "ruby".means_like
-      expect(result.first.instance_variable_get("@table").keys).to include(:word,:score,:tags)
-    end
   end
 
-
   describe "sounds_like" do
-    it "returns a collection of words as openstructs" do
-      result = "ruby".sounds_like
-      expect(result).to be_a(Array)
-      expect(result.first).to be_a(OpenStruct)
-    end
-
-    it "returns empty if the string is blank" do
-      expect("".sounds_like).to be_empty
-    end
-
-    it "each entry has 3 keys - word, score, and numSyllables" do
-      result = "ruby".sounds_like
-      expect(result.first.instance_variable_get("@table").keys).to include(:word,:score,:numSyllables)
-    end
+    include_examples "word method examples", "ruby", "sounds_like", [:word,:score, :numSyllables]
   end
 
   describe "spelled_like" do
-    it "returns a collection of words as openstructs" do
-      result = "ruby".spelled_like
-      expect(result).to be_a(Array)
-      expect(result.first).to be_a(OpenStruct)
-    end
-
-    it "returns empty if the word is not in datamuse" do
-      expect("jkl;asdf".spelled_like).to be_empty
-    end
-
-    it "returns empty if the string is blank" do
-      expect("".spelled_like).to be_empty
-    end
-
-    it "each entry has 2 keys - word and score" do
-      result = "ruby".spelled_like
-      expect(result.first.instance_variable_get("@table").keys).to include(:word,:score)
-    end
+    include_examples "word method examples", "ruby", "spelled_like", [:word,:score]
   end
 
- describe "related_popular_nouns" do
-   it "returns a collection of words as openstructs" do
-     result = "ruby".related_popular_nouns
-     expect(result).to be_a(Array)
-     expect(result.first).to be_a(OpenStruct)
-   end
+  describe "related_popular_nouns" do
+    include_examples "word method examples", "ruby", "related_popular_nouns", [:word,:score]
+  end
 
-   it "returns empty if the word is not in datamuse" do
-     expect("jkl;asdf".related_popular_nouns).to be_empty
-   end
+  describe "related_popular_adjectives" do
+    include_examples "word method examples", "ruby", "related_popular_adjectives", [:word,:score]
+  end
 
-   it "returns empty if the string is blank" do
-     expect("".related_popular_nouns).to be_empty
-   end
+  describe "related_synonyms" do
+    include_examples "word method examples", "ruby", "related_synonyms", [:word,:score]
+  end
 
-   it "each entry has 2 keys - word and score" do
-     result = "ruby".related_popular_nouns
-     expect(result.first.instance_variable_get("@table").keys).to include(:word,:score)
-   end
- end
+  describe "related_triggers" do
+    include_examples "word method examples", "ruby", "related_triggers", [:word,:score]
+  end
 
- describe "related_popular_adjectives" do
-   it "returns a collection of words as openstructs" do
-     result = "ruby".related_popular_adjectives
-     expect(result).to be_a(Array)
-     expect(result.first).to be_a(OpenStruct)
-   end
-
-   it "returns empty if the word is not in datamuse" do
-     expect("jkl;asdf".related_popular_adjectives).to be_empty
-   end
-
-   it "returns empty if the string is blank" do
-     expect("".related_popular_adjectives).to be_empty
-   end
-
-   it "each entry has 2 keys - word and score" do
-     result = "ruby".related_popular_adjectives
-     expect(result.first.instance_variable_get("@table").keys).to include(:word,:score)
-   end
- end
-
- describe "related_synonyms" do
-   it "returns a collection of words as openstructs" do
-     result = "ruby".related_synonyms
-     expect(result).to be_a(Array)
-     expect(result.first).to be_a(OpenStruct)
-   end
-
-   it "returns empty if the word is not in datamuse" do
-     expect("jkl;asdf".related_synonyms).to be_empty
-   end
-
-   it "returns empty if the string is blank" do
-     expect("".related_synonyms).to be_empty
-   end
-
-   it "each entry has 2 keys - word and score" do
-     result = "ruby".related_synonyms
-     expect(result.first.instance_variable_get("@table").keys).to include(:word,:score)
-   end
- end
-
- describe "related_triggers" do
-   it "returns a collection of words as openstructs" do
-     result = "ruby".related_triggers
-     expect(result).to be_a(Array)
-     expect(result.first).to be_a(OpenStruct)
-   end
-
-   it "returns empty if the word is not in datamuse" do
-     expect("jkl;asdf".related_triggers).to be_empty
-   end
-
-   it "returns empty if the string is blank" do
-     expect("".related_triggers).to be_empty
-   end
-
-   it "each entry has 2 keys - word and score" do
-     result = "ruby".related_triggers
-     expect(result.first.instance_variable_get("@table").keys).to include(:word,:score)
-   end
- end
-
- describe "related_antonyms" do
-   it "returns a collection of words as openstructs" do
-     result = "late".related_antonyms
-     expect(result).to be_a(Array)
-     expect(result.first).to be_a(OpenStruct)
-   end
-
-   it "returns empty if the word is not in datamuse" do
-     expect("jkl;asdf".related_antonyms).to be_empty
-   end
-
-   it "returns empty if the string is blank" do
-     expect("".related_antonyms).to be_empty
-   end
-
-   it "each entry has 2 keys - word and score" do
-     result = "late".related_antonyms
-     expect(result.first.instance_variable_get("@table").keys).to include(:word,:score)
-   end
- end
+  describe "related_antonyms" do
+    include_examples "word method examples", "late", "related_antonyms", [:word,:score]
+  end
 end

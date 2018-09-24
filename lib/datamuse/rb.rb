@@ -46,9 +46,10 @@ end
 class String
   include DatamuseRB
 
-  def method_missing(name)
-    super unless WORD_METHODS[name]
-    DatamuseRequest.send("/words",{WORD_METHODS[name] => self})
+  WORD_METHODS.each do |k,v|
+    define_method(k) do
+      DatamuseRequest.send("/words",v => self)
+    end
   end
 
 end

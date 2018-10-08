@@ -1,5 +1,5 @@
 require "bundler/setup"
-require "datamuse"
+require "datamuse_rb"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

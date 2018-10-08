@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    datamuse (0.1.0)
+    datamuse_rb (0.1.0)
       httparty
 
 GEM
@@ -31,7 +31,7 @@ PLATFORMS
 
 DEPENDENCIES
   bundler (~> 1.16)
-  datamuse!
+  datamuse_rb!
   rake (~> 10.0)
   rspec (~> 3.0)
 

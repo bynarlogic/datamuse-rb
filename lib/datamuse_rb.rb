@@ -1,4 +1,4 @@
-require "datamuse/version"
+require "datamuse_rb/version"
 require 'httparty'
 require 'ostruct'
 

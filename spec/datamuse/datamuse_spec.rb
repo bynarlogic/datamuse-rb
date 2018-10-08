@@ -1,8 +1,8 @@
 include DatamuseRB
 
-RSpec.describe Datamuse do
+RSpec.describe DatamuseRB do
   it "has a version number" do
-    expect(Datamuse::VERSION).not_to be nil
+    expect(DatamuseRB::VERSION).not_to be nil
   end
 
   describe "word methods" do

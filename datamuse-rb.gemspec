@@ -2,11 +2,11 @@
 
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "datamuse/rb/version"
+require "datamuse/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "datamuse-rb"
-  spec.version       = Datamuse::Rb::VERSION
+  spec.name          = "datamuse"
+  spec.version       = Datamuse::VERSION
   spec.authors       = ["Joshua D Jarvis"]
   spec.email         = ["bynarlogic@gmail.com"]
 

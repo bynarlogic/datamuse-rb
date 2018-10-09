@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/bynarlogic/datamuse-rb.svg?branch=master)](https://travis-ci.org/bynarlogic/datamuse-rb)
+[![Coverage Status](https://coveralls.io/repos/github/bynarlogic/datamuse-rb/badge.svg?branch=master)](https://coveralls.io/github/bynarlogic/datamuse-rb?branch=master)
 
 # DatamuseRb
 

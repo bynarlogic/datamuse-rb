@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/bynarlogic/datamuse-rb.svg?branch=master)](https://travis-ci.org/bynarlogic/datamuse-rb)
+
 # DatamuseRb
 
 DatamuseRb is yet another Ruby wrapper for the wonderful [Datamuse API](https://www.datamuse.com/api/). The approach for this gem is a little different. DatamuseRb extends the Ruby String Class with Datamuse methods. Methods can be chained much like the actual Datamuse API allows.

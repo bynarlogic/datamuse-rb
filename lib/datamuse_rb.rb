@@ -10,7 +10,7 @@ module DatamuseRB
 
     def self.send(endpoint,**queries)
       response = get(endpoint,query: queries)
-      DatamuseResultList.new(response.parsed_response)
+      DatamuseResultList.new(response.parsed_response,queries)
     end
   end
 
@@ -19,13 +19,15 @@ module DatamuseRB
     attr_accessor :results
     delegate [:first, :each] => :@results
 
-    def initialize(response)
+    def initialize(response,query)
       @results = response.map {|r| DatamuseResult.new(r)}
+      @query = query
     end
 
     def method_missing(name,*args)
       super unless WORD_METHODS[name] && args.first
-      DatamuseRequest.send("/words",{WORD_METHODS[name] => args.first})
+      @query.merge! WORD_METHODS[name] => args.first
+      DatamuseRequest.send("/words",@query)
     end
   end
 

@@ -88,5 +88,9 @@ RSpec.describe DatamuseRB do
       expect("ruby".means_like.related_rhymes("stem")).to be_a(DatamuseResultList)
       expect("ruby".means_like.related_rhymes("stem").results.first).to be_a(DatamuseResult)
     end
+
+    it "filters the results of the previous method return" do
+      expect("duck".means_like.spelled_like("b*").first.word).to eq("bird")
+    end
   end
 end

@@ -1,4 +1,4 @@
-include DatamuseRB
+using DatamuseRB
 
 RSpec.describe DatamuseRB do
   it "has a version number" do
@@ -85,8 +85,8 @@ RSpec.describe DatamuseRB do
 
   describe "chaining methods" do
     it "returns a DatamuseResults object containing DatamuseResult objects" do
-      expect("ruby".means_like.related_rhymes("stem")).to be_a(DatamuseResults)
-      expect("ruby".means_like.related_rhymes("stem").first).to be_a(DatamuseResult)
+      expect("ruby".means_like.related_rhymes("stem")).to be_a(DatamuseRB::DatamuseResults)
+      expect("ruby".means_like.related_rhymes("stem").first).to be_a(DatamuseRB::DatamuseResult)
     end
 
     it "filters the results of the previous method return" do

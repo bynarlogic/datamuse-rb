@@ -4,11 +4,14 @@
 
 # DatamuseRb
 
+Deprecation Warning: DatamuseRB will no longer extend the String class directly. String will only be extended within classes or modules using DatamuseRB starting in version 0.2.0. See the updated examples below. 
+
 DatamuseRb is yet another Ruby wrapper for the wonderful [Datamuse API](https://www.datamuse.com/api/). The approach for this gem is a little different. DatamuseRb extends the Ruby String Class with Datamuse methods. Methods can be chained much like the actual Datamuse API allows.
 
 Example: Words related to duck that start with the letter b
 
 ```ruby
+using DatamuseRB
 "duck".means_like.spelled_like("b*")
 ```
 
@@ -35,6 +38,7 @@ DatamuseRB currently supports all of the /words functions. Please visit the [dat
 Basic Usage:
 
 ```ruby
+using DatamuseRB
 #Call on any string
 "ruby".means_like
  => #<DatamuseRB::DatamuseResult word="red", score=84986, tags=["syn", "n", "adj"]>

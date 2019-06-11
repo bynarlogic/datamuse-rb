@@ -56,15 +56,34 @@ module DatamuseRB
     related_homophones: :rel_hom,consonant_match: :rel_cns
   }
 
+  refine String do
+    WORD_METHODS.each do |k,v|
+      define_method(k) do
+        DatamuseRequest.send("/words",v => self)
+      end
+    end
+  end
+
+  def warning_message
+    <<~HEREDOC
+      DatamuseRB Deprecation Notice: 
+      String will no longer be globally extended starting in version 0.2.0.
+      Add 'using DatamuseRB' to the module or class that uses this behavior. 
+      For further details visit https://github.com/bynarlogic/datamuse-rb
+    HEREDOC
+  end
+
 end
 
 class String
   include DatamuseRB
-
   WORD_METHODS.each do |k,v|
     define_method(k) do
+      warn(warning_message)
       DatamuseRequest.send("/words",v => self)
     end
   end
-
 end
+
+
+

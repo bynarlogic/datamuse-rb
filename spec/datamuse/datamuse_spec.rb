@@ -10,7 +10,7 @@ RSpec.describe DatamuseRB do
       include_examples "word method examples", "ruby", "means_like", [:word,:score, :tags]
 
       it "returns empty if the word is not in datamuse" do
-        expect("jkl;asdf".means_like.results).to be_empty
+        expect("jkl;asdf".means_like).to be_empty
       end
     end
 
@@ -85,8 +85,8 @@ RSpec.describe DatamuseRB do
 
   describe "chaining methods" do
     it "returns a DatamuseResults object containing DatamuseResult objects" do
-      expect("ruby".means_like.related_rhymes("stem")).to be_a(DatamuseResultList)
-      expect("ruby".means_like.related_rhymes("stem").results.first).to be_a(DatamuseResult)
+      expect("ruby".means_like.related_rhymes("stem")).to be_a(DatamuseResults)
+      expect("ruby".means_like.related_rhymes("stem").first).to be_a(DatamuseResult)
     end
 
     it "filters the results of the previous method return" do

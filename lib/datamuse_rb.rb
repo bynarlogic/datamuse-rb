@@ -10,28 +10,41 @@ module DatamuseRB
 
     def self.send(endpoint,**queries)
       response = get(endpoint,query: queries)
-      DatamuseResultList.new(response.parsed_response,queries)
-    end
-  end
-
-  class DatamuseResultList
-    extend Forwardable
-    attr_accessor :results
-    delegate [:first, :each] => :@results
-
-    def initialize(response,query)
-      @results = response.map {|r| DatamuseResult.new(r)}
-      @query = query
-    end
-
-    def method_missing(name,*args)
-      super unless WORD_METHODS[name] && args.first
-      @query.merge! WORD_METHODS[name] => args.first
-      DatamuseRequest.send("/words",@query)
+      DatamuseResults.new(response.parsed_response,queries)
     end
   end
 
   class DatamuseResult < OpenStruct
+  end
+
+  class DatamuseResults
+    include Enumerable
+
+    def initialize(response, query)
+      @results = response.map {|r| DatamuseResult.new(r)}
+      @query = query
+    end
+
+    def each(&block)
+      @results.each do |result|
+        block.call(result)
+      end
+    end
+
+    def empty?
+      none?
+    end
+
+    private
+
+    def method_missing(name,*args)
+      super unless WORD_METHODS[name] && args.any?
+      @query.merge! WORD_METHODS[name] => args.first
+      DatamuseRequest.send("/words",@query)
+    end
+
+    attr_reader :results, :query
+
   end
 
   WORD_METHODS = {
